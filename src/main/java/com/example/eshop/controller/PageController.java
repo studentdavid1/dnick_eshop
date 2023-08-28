@@ -11,7 +11,7 @@ public class PageController {
         return "login";
     }
 
-    @GetMapping("/index")
+    @GetMapping(path = {"/index","/"})
     public String getIndexPage() {
         return "index";
     }
