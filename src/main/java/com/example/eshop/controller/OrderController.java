@@ -90,7 +90,7 @@ public class OrderController {
     @PostMapping("/order")
     public String createOrder(HttpSession session) throws Exception {
         orderService.createOrder((Map<String, String>) session.getAttribute("allParams"), session);
-        return "/payment_successful";
+        return "payment_successful";
     }
 
     @PostMapping("/order/delete/{id}")
