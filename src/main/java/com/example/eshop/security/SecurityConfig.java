@@ -30,10 +30,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests((requests) -> requests.requestMatchers("/register", "/login","/index","/")
-                        .permitAll().requestMatchers("/category","/*/category/**","/product","/*/product/**")
-                        .hasAuthority("ADMIN")
-                        .requestMatchers("/order","filter/category","/filter/category/*","/shopping-cart","/my-orders","/add/to/shopping/cart","/remove/from/shopping/cart/*","/payment","/order/delete","/order/delete/*")
+                        .permitAll().requestMatchers("/order","filter/category","/filter/category/*","/shopping-cart","/my-orders","/add/to/shopping/cart","/remove/from/shopping/cart/*","/payment","/order/delete","/order/delete/*")
                         .hasAnyAuthority("ADMIN","USER")
+                        .requestMatchers("/category","/*/category/**","/product","/*/product/**")
+                        .hasAuthority("ADMIN")
                         .anyRequest().authenticated())
                 .formLogin((form) -> form.loginPage("/login").permitAll().successHandler(customAuthenticationSuccessHandler))
                 .logout((logout) -> logout.permitAll().logoutSuccessUrl("/index"))
